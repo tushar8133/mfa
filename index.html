@@ -164,26 +164,12 @@ var totp = new jsOTP.totp();
 
 const cipher = "AES"
 
-function encrypt() {
-    let e_msg_input = document.querySelector("#e_msg_input");
-    let e_secret = document.querySelector("#e_secret");
-    let e_msg_output = document.querySelector("#e_msg_output");
-    try {
-        e_msg_output.value = CryptoJS[cipher].encrypt(e_msg_input.value, e_secret.value).toString();
-    } catch(e) {
-        e_msg_output.value = e;
-    }
+function encrypt(secret, password) {
+    return CryptoJS[cipher].encrypt(secret, password).toString();
 }
 
-function decrypt() {
-    let d_msg_input = document.querySelector("#d_msg_input");
-    let d_secret = document.querySelector("#d_secret");
-    let d_msg_output = document.querySelector("#d_msg_output");
-    try {
-        d_msg_output.value = CryptoJS[cipher].decrypt(d_msg_input.value, d_secret.value).toString(CryptoJS.enc.Utf8);
-    } catch(e) {
-        d_msg_output.value = e;
-    }
+function decrypt(secret, password) {
+    return CryptoJS[cipher].decrypt(secret, password).toString(CryptoJS.enc.Utf8);
 }
 
 function processPassphrase() {
