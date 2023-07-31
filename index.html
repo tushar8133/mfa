@@ -103,17 +103,7 @@
         <div><progress id="progressbar" max="30"></progress></div>
     </div>
     
-    <p class="otp-btns" onclick="copyToClipBoard()">
-        <button><span>AMAZON</span><span>XXXXXX</span></button>
-        <button><span>GITHUB</span><span>XXXXXX</span></button>
-        <button><span>GOOGLE</span><span>XXXXXX</span></button>
-        <button><span>HCL</span><span>XXXXXX</span></button>
-        <button><span>WU</span><span>XXXXXX</span></button>
-        <button><span>GODADDY</span><span>XXXXXX</span></button>
-        <button><span>BITBNS</span><span>XXXXXX</span></button>
-        <button><span>KITE</span><span>XXXXXX</span></button>
-	<button><span>EY</span><span>XXXXXX</span></button>
-    </p>
+    <p class="otp-btns" onclick="copyToClipBoard()"></p>
     
     <p class="virtual-keyboard" onclick="typeLetter()"></p>
 
@@ -139,9 +129,26 @@ https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js
 
 <script>
 
-let password = '';
+const otpsObj = {
+    AMAZON: "U2FsdGVkX198PGHwy5U98RsVTJNRZePB1bmuWleatZHxM3xdAiSkuNQ2N1R8KwNFB/25rYHNrd1vnd8ubZVTSIDcHo7ulBP0Vt+JhZfe6sU=",
+    GITHUB: "U2FsdGVkX1/YSlcGrWJyt3xEJTfuU3fdw8ep23yVFQlQ/7py5V5wCfteZBpLX1N5",
+    GOOGLE: "U2FsdGVkX1+mysPRzHdzjoHW2tJAJSSgeFEWJrlh0Z1jkDoG5GM4jrFORPo6ud6vmWVaatm+VI+ZOfBr6BRXOA==",
+    HCL: "U2FsdGVkX1+hY+U2HdT+jgDezD9gYDYGy815VvjS08l2otcEEvqp8S7I5L7g0nAW",
+    WU: "U2FsdGVkX19qmB+neh7zGcmaVVnmv2kM8jWbUFrhZYSaeplil+xcle3aIcBJfFdX",
+    GODADDY: "U2FsdGVkX1/WreQ7KF8vBDWMeCJnqZoeg1PtxIcn3V4JOmjKw4bEP4LHJyKhxsV1",
+    BITBNS: "U2FsdGVkX1+6tFTDm2CH82+SdenVZpjrQOFKfEzD2gS3+QmVgYpQhPsKQ7lAIG3a2x4j1gjF6doYAmE+nh8QtQ==",
+    KITE: "U2FsdGVkX18nD5yc11Q0R7pMr4cNDKPEmBDk21/QKx4F4OogrI7DsS9Byp1wk8BvR4s8kMr5geoudbnQfxdaZQ==",
+    EY: "U2FsdGVkX19pA8JhT373QSU9nss6RhjKhd096fKx+sKvWbT3gUFDtNmIn4O8SWK6AU+QKsyOqssxx8jaOVVoQA==",
+}
 
+let password = '';
 let timer;
+
+Object.keys(otpsObj).forEach(item => {
+    document.querySelector('.otp-btns').insertAdjacentHTML('beforeend', `<button><span>${item}</span><span>XXXXXX</span></button>`)
+});
+
+
 
 // var hotp = new jsOTP.hotp();
 // var hmacCode = hotp.getOtp(<your OTP key>, <counter>);
@@ -180,17 +187,6 @@ function decrypt() {
 }
 
 function processPassphrase() {
-    const otpsObj = {
-        AMAZON: "U2FsdGVkX198PGHwy5U98RsVTJNRZePB1bmuWleatZHxM3xdAiSkuNQ2N1R8KwNFB/25rYHNrd1vnd8ubZVTSIDcHo7ulBP0Vt+JhZfe6sU=",
-        GITHUB: "U2FsdGVkX1/YSlcGrWJyt3xEJTfuU3fdw8ep23yVFQlQ/7py5V5wCfteZBpLX1N5",
-        GOOGLE: "U2FsdGVkX1+mysPRzHdzjoHW2tJAJSSgeFEWJrlh0Z1jkDoG5GM4jrFORPo6ud6vmWVaatm+VI+ZOfBr6BRXOA==",
-        HCL: "U2FsdGVkX1+hY+U2HdT+jgDezD9gYDYGy815VvjS08l2otcEEvqp8S7I5L7g0nAW",
-        WU: "U2FsdGVkX19qmB+neh7zGcmaVVnmv2kM8jWbUFrhZYSaeplil+xcle3aIcBJfFdX",
-        GODADDY: "U2FsdGVkX1/WreQ7KF8vBDWMeCJnqZoeg1PtxIcn3V4JOmjKw4bEP4LHJyKhxsV1",
-        BITBNS: "U2FsdGVkX1+6tFTDm2CH82+SdenVZpjrQOFKfEzD2gS3+QmVgYpQhPsKQ7lAIG3a2x4j1gjF6doYAmE+nh8QtQ==",
-        KITE: "U2FsdGVkX18nD5yc11Q0R7pMr4cNDKPEmBDk21/QKx4F4OogrI7DsS9Byp1wk8BvR4s8kMr5geoudbnQfxdaZQ==",
-	EY: "U2FsdGVkX1+WaZ1JyZQJQ4IMae1IqHPCpMu6Jy0wpCZgwQtQs4hImqMNDMbu3cmv",
-    }
     Object.keys(otpsObj).forEach( (key) => {
         try {
             let kkkey = String(otpsObj[key]);
@@ -231,7 +227,7 @@ function copyToClipBoard() {
 
 function epoch() {
     setInterval(() => {
-        let time = (Math.round(new Date() / 1000) % 30);
+        let time = 30 - Math.round(new Date() / 1000) % 30;
         // document.querySelector("#epoch").innerText = time;
         document.querySelector("#progressbar").value = time;
         processPassphrase();
