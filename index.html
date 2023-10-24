@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="300">
     <title>My2FA</title>
     <style>
         :root {
@@ -39,18 +40,17 @@
             justify-content: center;
         }
         .otp-btns button {
-			margin: 5px;
-			transition: background 0.8s;
-			border: 1px solid lightgray;
+            margin: 5px;
+            padding: 1.5% 3%;
+            transition: background 0.8s
+            border: 1px solid lightgray;
             color: #999999;
-            width: 6rem;
-            height: 2.5rem;
-		}
-		.otp-btns button:active {
-			background-color: deepskyblue;
-			background-size: 100%;
-			transition: background 0s;
-		}
+	}
+	.otp-btns button:active {
+		background-color: deepskyblue;
+		background-size: 100%;
+		transition: background 0s;
+	}
         .otp-btns button:focus {
             outline: none;
 		}
@@ -139,6 +139,8 @@ const otpsObj = {
     BITBNS: "U2FsdGVkX1+6tFTDm2CH82+SdenVZpjrQOFKfEzD2gS3+QmVgYpQhPsKQ7lAIG3a2x4j1gjF6doYAmE+nh8QtQ==",
     KITE: "U2FsdGVkX18nD5yc11Q0R7pMr4cNDKPEmBDk21/QKx4F4OogrI7DsS9Byp1wk8BvR4s8kMr5geoudbnQfxdaZQ==",
     EY: "U2FsdGVkX19pA8JhT373QSU9nss6RhjKhd096fKx+sKvWbT3gUFDtNmIn4O8SWK6AU+QKsyOqssxx8jaOVVoQA==",
+    "CARRIER-OKTA": "U2FsdGVkX1+CnSon3obnWqpBR/RVsq92W81dd/93EJTNYhB/CkviskY2c5qCW/f4",
+    "CARRIER-MS": "U2FsdGVkX18pw8hEL4ANJAgNkh41ok8RdSgdnKu4BLc+i7gAtiBMYF5q3RgohxNT",
 }
 
 let password = '';
@@ -224,7 +226,7 @@ function reloadTimer() {
     clearTimeout(timer);
     timer = setTimeout( () => {
         location.reload();
-    }, 60000);
+    }, 1200000);
 }
 
 function typeLetter() {
