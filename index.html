@@ -233,7 +233,7 @@ function typeLetter() {
     reloadTimer();
 
     if (event.target.nodeName !== 'BUTTON') return;
-    const keyText = event.target.innerText;
+    const keyText = event.target.textContent;
     const keyb1 = document.querySelector('.keyboard1');
     const keyb2 = document.querySelector('.keyboard2');
     if (keyText === '⇪' && keyb1.style.display === 'none') {
