@@ -15,7 +15,7 @@
         }
         :root {
             --key-margin: 3px;
-            --key-size: calc(100vw / 14.2);
+            --key-size: calc(100vw / 18);
             --key-border: 1px;
         }
         html, body {
@@ -48,7 +48,7 @@
         .otp-btns button {
             margin: 5px;
             padding: 1.5% 3%;
-            transition: background 0.8s
+            transition: background 0.8s;
             border: 1px solid lightgray;
             color: #999999;
 	}
@@ -73,11 +73,11 @@
 			font-size: 130%;
 		}
         .virtual-keyboard button {
-            font-size: 4vw;
+            font-size: 3vw;
             padding: 0;
             margin: var(--key-margin);
             width: calc(var(--key-size) - var(--key-margin) * 2);
-            transition: filter 1s;
+            transition: filter 1ms;
             text-shadow: 1px 1px 0 #ffffff;
             aspect-ratio: 1/1;
             contain: strict;
@@ -97,9 +97,6 @@
         }
         .virtual-keyboard br:nth-of-type(3) + button {
             margin-left: calc( (var(--key-size) + var(--key-margin) ) * 0.1);
-        }
-        .keyboard1 {
-            /* display: none; */
         }
     </style>
 </head>
@@ -254,7 +251,7 @@ function typeLetter() {
     };
     if (keyText === '⎵') {
         password += ' ';
-    } else if (keyText === '←') {
+    } else if (keyText === '⇦') {
         password = password.slice(0, -1);
     } else if (keyText === '🗑️') {
         password = '';
